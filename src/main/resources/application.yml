@@ -1,5 +1,34 @@
 spring:
   application:
     name: customer
+  profiles:
+    active: dev
   config:
-    import: configserver:http://localhost:8888
+    import: optional:configserver:http://localhost:8888
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9090
+  datasource:
+    url: jdbc:postgresql://localhost:16168/db_customer
+    username: itpusr
+    password: itp@168
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+server:
+  port: 20260
+eureka:
+  instance:
+    prefer-ip-address: true
+
+axon:
+  axonserver:
+    enabled: false
+  serializer:
+    general: jackson
+    events: jackson
+    messages: jackson
