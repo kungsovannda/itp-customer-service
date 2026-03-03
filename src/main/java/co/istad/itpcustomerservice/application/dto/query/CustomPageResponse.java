@@ -1,5 +1,6 @@
 package co.istad.itpcustomerservice.application.dto.query;
 
+import co.istad.itpcommon.domain.dto.PageResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -92,5 +93,16 @@ public class CustomPageResponse implements Page<Object> {
     @Override
     public Iterator<Object> iterator() {
         return page.iterator();
+    }
+
+    public PageResponse getPageResponse(){
+        return PageResponse.builder()
+                .data(this.getContent())
+                .totalPages(this.getTotalPages())
+                .totalElements(this.getTotalElements())
+                .numberOfElements(this.getNumberOfElements())
+                .hasNext(this.hasNext())
+                .hasPrevious(this.hasPrevious())
+                .build();
     }
 }

@@ -8,8 +8,11 @@ import co.istad.itpcustomerservice.data.repository.CustomerSegmentRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.UUID;
@@ -17,6 +20,7 @@ import java.util.UUID;
 @Component
 @RequiredArgsConstructor
 @Slf4j
+@ProcessingGroup("customer-group")
 public class CustomerListener {
 
     private final CustomerRepository customerRepository;
@@ -24,7 +28,6 @@ public class CustomerListener {
     private final CustomerSegmentRepository customerSegmentRepository;
 
     @EventHandler
-    @Transactional
     public void on(CustomerCreatedEvent customerCreatedEvent){
         log.info("ON CustomerCreatedEvent: {}", customerCreatedEvent);
 
@@ -44,6 +47,8 @@ public class CustomerListener {
         customerEntity.setCustomerSegment(
                 customerSegmentRepository.findById(customerCreatedEvent.customerSegmentId().customerSegmentId()).orElseThrow()
         );
+
+//        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "HELLO");
 
         log.info("Saved: {}", customerRepository.save(customerEntity));
     }
