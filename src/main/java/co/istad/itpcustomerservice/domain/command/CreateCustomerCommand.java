@@ -14,7 +14,7 @@ public record CreateCustomerCommand(
         @TargetAggregateIdentifier
         CustomerId customerId,
 
-        CustomerName name,
+        co.istad.itpcommon.domain.valueobject.CustomerName name,
 
         CustomerEmail email,
 

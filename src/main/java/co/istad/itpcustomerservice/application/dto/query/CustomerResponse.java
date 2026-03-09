@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public record CustomerResponse(
         UUID customerId,
-        CustomerName name,
+        co.istad.itpcommon.domain.valueobject.CustomerName name,
         CustomerEmail email,
         String phoneNumber,
         LocalDate dob,

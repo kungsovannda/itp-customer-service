@@ -30,7 +30,7 @@ public class CustomerAggregate {
     @TargetAggregateIdentifier
     private CustomerId customerId;
 
-    private CustomerName name;
+    private co.istad.itpcommon.domain.valueobject.CustomerName name;
 
     private CustomerEmail email;
 

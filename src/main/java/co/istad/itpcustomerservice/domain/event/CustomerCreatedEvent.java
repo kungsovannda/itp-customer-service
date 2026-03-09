@@ -7,7 +7,6 @@ import lombok.Builder;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Builder
 public record CustomerCreatedEvent(
@@ -15,7 +14,7 @@ public record CustomerCreatedEvent(
         @TargetAggregateIdentifier
         CustomerId customerId,
 
-        CustomerName name,
+        co.istad.itpcommon.domain.valueobject.CustomerName name,
 
         CustomerEmail email,
 

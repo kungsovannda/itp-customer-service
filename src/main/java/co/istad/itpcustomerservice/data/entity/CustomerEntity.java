@@ -2,7 +2,7 @@ package co.istad.itpcustomerservice.data.entity;
 
 import co.istad.itpcustomerservice.domain.valueobject.CustomerEmail;
 import co.istad.itpcustomerservice.domain.valueobject.CustomerGender;
-import co.istad.itpcustomerservice.domain.valueobject.CustomerName;
+import co.istad.itpcommon.domain.valueobject.CustomerName;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
